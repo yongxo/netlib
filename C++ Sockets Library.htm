@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0048)http://www.alhem.net/project/example5/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>C++ Sockets Library</title>
+
+<link rel="STYLESHEET" href="./C++ Sockets Library_files/menu.css" type="text/css">
+<style type="text/css">
+</style>
+<script src="./C++ Sockets Library_files/cb=gapi.loaded_1" async=""></script><script async="" type="text/javascript" src="./C++ Sockets Library_files/ca-pub-6714775349641522.js"></script><script src="./C++ Sockets Library_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./C++ Sockets Library_files/load.js"></script><script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+ var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+ s.type = 'text/javascript';
+ s.async = true;
+ s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+ t.parentNode.insertBefore(s, t);
+})();
+/* ]]> */
+</script>
+<script type="text/javascript" src="./C++ Sockets Library_files/plusone.js" gapi_processed="true"></script>
+<style type="text/css">.topper {
+	background: #009999;
+	border-bottom: 2px #000000 solid;
+	padding-left: 10px;
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+</style><script type="text/javascript"><!--
+function show_search()
+{
+ 	return overlib('<!-- SiteSearch Google -->' +
+		'<form method="get" action="http://www.google.com/custom">' +
+		'<table border="0" bgcolor="#ffffff">' +
+		'<tr><td nowrap="nowrap" valign="top" align="left" height="32">' +
+		'<a href="http://www.google.com/">' +
+		'<img SRC="http://www.google.com/logos/Logo_25wht.gif" border="0" alt="Google"><\/img><\/a>' +
+		'<\/td>' +
+		'<td nowrap>' +
+		'<input type="hidden" name="domains" value="alhem.net"><\/input>' +
+		'<input type="text" name="q" size="31" maxlength="255" value=""><\/input>' +
+		'<input type="submit" name="sa" value="Search"><\/input>' +
+		'<\/td><\/tr>' +
+		'<tr>' +
+		'<td>&nbsp;<\/td>' +
+		'<td nowrap>' +
+		'<font size="-1" color="#000000">' +
+		'<input type="radio" name="sitesearch" value=""><\/input> Web' +
+		'<input type="radio" name="sitesearch" value="alhem.net" checked><\/input>alhem.net<\/font>&nbsp;&nbsp;' +
+		'<input type="hidden" name="client" value="pub-6714775349641522"><\/input>' +
+		'<input type="hidden" name="forid" value="1"><\/input>' +
+		'<input type="hidden" name="ie" value="ISO-8859-1"><\/input>' +
+		'<input type="hidden" name="oe" value="ISO-8859-1"><\/input>' +
+		'<input type="hidden" name="cof" value="GALT:#008000;GL:1;div:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;"><\/input>' +
+		'<input type="hidden" name="hl" value="en"><\/input>' +
+		'<\/td><\/tr><\/table>' +
+		'<\/form>' +
+		'<!-- SiteSearch Google -->', 
+		BORDER, 2, 
+		STICKY, MOUSEOFF, 
+		FGCOLOR, '#ffffff');
+}
+//--></script>
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,.fb_connect_bar_container span,.fb_connect_bar_container a,.fb_connect_bar_container img,.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}.fb_connect_bar a:hover{color:#fff}.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}.fb_connect_bar div a,.fb_connect_bar span,.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fbpluginrecommendationsbarleft,.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}.fbpluginrecommendationsbarleft{left:10px}.fbpluginrecommendationsbarright{right:10px}</style></head>
+<body style="margin: 0; padding: 0;">
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./C++ Sockets Library_files/bLBBWlYJp_w.htm" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./C++ Sockets Library_files/bLBBWlYJp_w(1).htm" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div><script src="./C++ Sockets Library_files/all.js"></script><div class="topper"><center><div style="width: 760px;" align="left"><table width="100%" cellpadding="0" cellspacing="0"><tbody><tr><td><font size="-1" color="#000000"><a style="color: #ffffff" href="http://www.alhem.net/">Home</a>&nbsp;&nbsp;+&nbsp;&nbsp;<a style="color: #ffffff" href="http://www.alhem.net/bbs?id=1">Forums</a>&nbsp;&nbsp;+&nbsp;&nbsp;<a style="color: #ffffff" href="http://www.alhem.net/Sockets/">C++ and Sockets</a>&nbsp;&nbsp;+&nbsp;&nbsp;<a style="color: #ffffff" href="http://www.alhem.net/dbdesigner/">C++ and SQL: MySQL, sqlite, ODBC</a>&nbsp;&nbsp;+&nbsp;&nbsp;<a style="color: #ffffff" href="http://www.alhem.net/project/rowo/">Miscellaneous Projects</a></font></td></tr></tbody></table></div></center></div>
+
+<!-- menu table -->
+<table cellpadding="5" cellspacing="0" width="100%"><tbody><tr><td width="120" valign="top" align="center"><a href="http://www.alhem.net/"><img border="0" alt="Logo" src="./C++ Sockets Library_files/ahl.png"></a><br><div class="x" align="center" style="margin-bottom: 5px;"><a class="meny" onmouseout="return nd();" onmouseover="return show_search();"><font size="-1">Search Site</font></a></div><br>&nbsp;&nbsp;&nbsp;&nbsp;<div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1405338435904" name="I0_1405338435904" src="about:blank" data-gapiattached="true"></iframe></div><g:plusone size="small" data-gapiscan="true" data-onload="true" data-gapistub="true"></g:plusone><div style="margin-top: 8px;"><a class="svart" href="http://www.alhem.net/"><font style="font-weight: normal;" size="-1">~Sockets~</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/Sockets/index.html" class="meny"><font size="-1">&nbsp;C++ Sockets&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/Sockets/tutorial/index.html" class="meny"><font size="-1">&nbsp;Tutorial&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/Sockets/classdiagram.html" class="meny"><font size="-1">&nbsp;Classes&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/Sockets/license.html" class="meny"><font size="-1">&nbsp;License&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/jsockets/index.html" class="meny"><font size="-1">&nbsp;Java Sockets&nbsp;</font></a></div><div style="margin-top: 8px;"><a class="svart" href="http://www.alhem.net/"><font style="font-weight: normal;" size="-1">~New~</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/wsdl2cpp/index.html" class="meny"><font size="-1">&nbsp;Xsd2cpp&nbsp;</font></a></div><div style="margin-top: 8px;"><a class="svart" href="http://www.alhem.net/"><font style="font-weight: normal;" size="-1">~Examples~</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/smtpnuke/index.html" class="meny"><font size="-1">&nbsp;SMTPProxy&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/example2/index.html" class="meny"><font size="-1">&nbsp;PortProxy&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/example3/index.html" class="meny"><font size="-1">&nbsp;ChatServer&nbsp;</font></a></div><div class="y" align="center"><a href="./C++ Sockets Library_files/C++ Sockets Library.htm" style="font-weight: bold; text-decoration: none; color: #000000"><font size="-1">&nbsp;ClientServer&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/example6/index.html" class="meny"><font size="-1">&nbsp;HttpGet&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/example7/index.html" class="meny"><font size="-1">&nbsp;DChat&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/example8/index.html" class="meny"><font size="-1">&nbsp;WebServer&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/example9/index.html" class="meny"><font size="-1">&nbsp;UDP&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/ex10/index.html" class="meny"><font size="-1">&nbsp;ICMP&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/small/index.html" class="meny"><font size="-1">&nbsp;Small MUD&nbsp;</font></a></div><div class="x" align="center"><a href="http://www.alhem.net/project/futuremud/index.html" class="meny"><font size="-1">&nbsp;MudBase&nbsp;</font></a></div><div style="margin-top: 10px;"><script type="text/javascript"><!--
+google_ad_client = "pub-6714775349641522";
+google_ad_width = 110;
+google_ad_height = 32;
+google_ad_format = "110x32_as_rimg";
+google_cpa_choice = "CAAQ2ZCazgEaCCvPXrFfpg_0KPmNxXQ";
+//--></script>
+<script type="text/javascript" src="./C++ Sockets Library_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:32px;margin:0;padding:0;position:relative;visibility:visible;width:110px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:32px;margin:0;padding:0;position:relative;visibility:visible;width:110px;background-color:transparent"><iframe width="110" height="32" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins></div><div style="margin-top: 8px;"><a class="svart" href="http://www.alhem.net/"><font style="font-weight: normal;" size="-1">~Contact~</font></a></div><div class="x"><a href="http://www.alhem.net/cgi-bin/bbs/zz?board=538" class="meny"><font size="-1">message&nbsp;board</font></a><br><a href="mailto:grymse_AT_gmail_DOT_com" class="meny">&nbsp;<font size="-1">email author</font>&nbsp;</a><br><a href="http://www.alhem.net/project/example5/index_spanish.html"><img border="0" src="./C++ Sockets Library_files/es.png" alt="esta pagina en espanol"></a>
+<br></div><form target="_new" action="https://www.paypal.com/cgi-bin/webscr" method="post"><div align="center" style="padding: 8px;"><input type="hidden" name="cmd" value="_s-xclick"><input type="image" src="./C++ Sockets Library_files/x-click-but04.gif" name="submit" alt="Make payments with PayPal - it&#39;s fast, free and secure!"><input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+"></div></form>
+<!-- menu table -->
+</td><td valign="top">
+<h1>C++ Socket Library programming example</h1>
+
+<div align="left"><div style="width: 760px" align="left">
+
+<h3>Example: Client/Server solution</h3>
+
+<div style="margin: 2px 16px 16px 16px;">
+<!-- google -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-6714775349641522";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_channel ="";
+google_color_border = "c0c0c0";
+google_color_bg = "FFFFe0";
+google_color_link = "0000FF";
+google_color_url = "00008B";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="./C++ Sockets Library_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+<!-- /google -->
+</div>
+<br>
+
+
+<p><b>Download</b></p>
+<p><a href="http://www.alhem.net/project/example5/clientserver-1.2.tar.gz">clientserver-1.2.tar.gz</a>
+2006-10-03
+Update to sockets library v2.1
+</p>
+<p><a href="http://www.alhem.net/project/example5/clientserver-1.1.tar.gz">clientserver-1.1.tar.gz</a>
+2005-08-30
+Updated example code with modified ipv6 support
+</p>
+<p><a href="http://www.alhem.net/project/example5/clientserver-1.0.tar.gz">clientserver-1.0.tar.gz</a></p>
+<p><i><font size="-1">Please note. 
+This example was primarily developed on linux, and may require some tweaking 
+to compile on other platforms.</font></i></p>
+
+<!-- doxygen -->
+<div style="background: #e0ffe0; border: 1px #c0c0c0 solid; padding: 5px">
+<a href="http://www.alhem.net/project/example5/html/">Source code documentation</a> (generated by <a href="http://www.doxygen.org/">Doxygen</a>).
+Select "File List" from the doxygen index page to see a list of all files in the example.
+Then select "[code]" to read the source code of that file. 
+Files beginning with lowercase are usually the main() starting point, and files beginning
+with uppercase usually contains a class of the same name as the file itself.
+</div>
+<!-- /doxygen -->
+<br>
+
+<div align="center">
+<table cellpadding="0" cellspacing="0"><tbody><tr><td bgcolor="#c0c0c0">
+<table cellpadding="5" cellspacing="2"><tbody><tr><td bgcolor="#ffffff" align="left">
+<u><font size="-1">Class Diagram
+generated by
+<a href="http://www.alhem.net/project/dp/">dp</a></font></u><br>
+<img src="./C++ Sockets Library_files/clientserver.png" alt="Class Diagram" border="0" usemap="#map1">
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</div>
+
+</div></div>
+<br><br><br><br><br>
+<script type="text/javascript" src="./C++ Sockets Library_files/clientserver.js"></script><map name="map1">
+<area shape="rect" href="http://www.alhem.net/project/example5/html/classClientSocket.html" title="Class documentation" alt="" coords="511,315,615,363">
+<area shape="rect" href="http://www.alhem.net/project/example5/html/classServerSocket.html" title="Class documentation" alt="" coords="509,387,616,435">
+</map>
+
+
+<!-- menu table -->
+</td></tr></tbody></table><i style="padding: 5px 10px;">Page, code, and content Copyright (C) 2013 by Anders Hedström</i>
+<iframe name="oauth2relay260118410" id="oauth2relay260118410" src="./C++ Sockets Library_files/postmessageRelay.htm" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

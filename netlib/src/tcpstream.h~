@@ -1,0 +1,41 @@
+
+#ifndef CTCPSTREAM_H
+#define CTCPSTREAM_H
+#include "CTcpSocket.h"
+
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <sys/un.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+
+#include "assert.h"
+
+#include "exception.h"
+
+#include "stream.h"
+class CTcpStream: public CTcpSocket, public CStream
+{
+	friend class CTcpSocket;
+	
+public:
+	CTcpStream(int iBufSize = 512);
+	CTcpStream(const CSocket* pstSocket, int iBufSize = 512);
+	CTcpStream(const CInetAddress& stInetAddr, tcport_t tPort, int iBufSize = 512);
+	//CTcpStream(const CUnixAddress& stUnixAddr, int iBufSize = 512);
+	virtual ~CTcpStream() { flush(); }
+	virtual int overflow(int ch);
+	virtual int underflow();
+	
+protected:
+	virtual bool OnWriteIntr() { return true; }
+	virtual bool OnReadIntr() { return true; }
+};
+
+#endif

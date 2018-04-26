@@ -1,0 +1,86 @@
+#ifndef CTCPSOCKET_H
+#define CTCPSOCKET_H
+
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <sys/un.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <errno.h>
+//#include <cstdio>
+#include <iostream>
+#include "exception.h"
+#include "csocket.h"
+//#include "tcpstream.h"
+
+class CTcpStream;
+class CTcpSocket : public CSocket
+{
+protected:
+	// return false will close new connected socket
+	virtual bool OnAccept(const CInetAddress& stInetAddr, tcport_t tPort)
+			{ return true; }	
+	//virtual bool OnAccept(const CUnixAddress& stUnixAddr)
+	//		{ return true; }	
+			
+	virtual bool OnCheckOpenIntr() { return true; }
+	virtual bool OnAcceptIntr() { return true; }
+			
+public:
+	CTcpSocket() {}
+	CTcpSocket(const CSocket* pstSocket);
+	//bind ...
+	CTcpSocket(const CInetAddress& stInetAddr, tcport_t tPort);
+//	CTcpSocket(const CUnixAddress& stUnixAddr);
+	
+	virtual ~CTcpSocket() {}
+
+	//open as server to listen ...
+	void Open(int iBackLog = 5);
+	
+	//open as client to connect ...
+	//if EINPROGRESS or EINTR error occurs return false
+	//if other error occurs throw exception
+	//else return true
+	bool Open(const CInetAddress& stInetAddr, tcport_t tPort);
+//	bool Open(const CUnixAddress& stUnixAddr);	
+	
+	//if open with return value false should call this function to check if already opened
+	//if not connected return false
+	//if error occurs throw exception
+	//if connected return true
+	bool CheckOpen(long lSec, long lUSec = 0);
+
+	//accept incomming connections ...
+	bool Accept(CTcpStream* pstTcpStream);
+	
+private:
+	void Listen(int iBackLog = 5);
+};
+
+
+class CTcpStream: public CTcpSocket, public CStream
+{
+private:
+	friend class CTcpSocket;
+	
+public:
+	CTcpStream(int iBufSize = 512);
+	CTcpStream(const CSocket* pstSocket, int iBufSize = 512);
+	CTcpStream(const CInetAddress& stInetAddr, tcport_t tPort, int iBufSize = 512);
+	//CTcpStream(const CUnixAddress& stUnixAddr, int iBufSize = 512);
+	virtual ~CTcpStream() { flush(); }
+	virtual int overflow(int ch);
+	virtual int underflow();
+	
+protected:
+	virtual bool OnWriteIntr() { return true; }
+	virtual bool OnReadIntr() { return true; }
+};
+
+#endif

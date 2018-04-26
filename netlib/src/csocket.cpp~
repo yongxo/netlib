@@ -1,0 +1,153 @@
+#include "csocket.h"
+#include <string.h>
+#include <assert.h>
+
+using namespace std;
+CInetAddress::CInetAddress()
+{
+	memset(&m_stInetAddr, 0, sizeof(m_stInetAddr));
+}
+
+
+CInetAddress::CInetAddress(const struct in_addr& stInetAddr)
+{
+	m_stInetAddr = stInetAddr;
+}
+
+
+CInetAddress::CInetAddress(const char* sInetAddr)
+{
+	*this = sInetAddr;
+}
+
+
+bool CInetAddress::IsInetAddress() const
+{
+	struct in_addr stInetAddr;
+	memset(&stInetAddr, 0, sizeof(stInetAddr));
+	if(memcmp(&m_stInetAddr, &stInetAddr, sizeof(m_stInetAddr)))
+		return true;
+	return false;
+}
+
+
+CInetAddress& CInetAddress::operator = (const struct in_addr& stInetAddr)
+{
+	m_stInetAddr = stInetAddr;
+	return *this;
+}
+
+
+CInetAddress& CInetAddress::operator = (const char* sInetAddr)
+{
+	if (strcmp(sInetAddr, "*") == 0)
+	{
+		m_stInetAddr.s_addr = htonl(INADDR_ANY);
+		return *this;
+	}
+
+	if (inet_aton(sInetAddr, &m_stInetAddr))
+		return *this;
+
+	struct hostent stHostBuf, *pstHost;
+	char* pchBuffer;
+	size_t tBufLen;
+	int iHErr;
+	
+	tBufLen = 1024;
+	pchBuffer = new char [tBufLen];
+	while (gethostbyname_r(sInetAddr, &stHostBuf, pchBuffer, tBufLen, &pstHost, &iHErr) != 0 || pstHost == NULL)
+	{
+		if (iHErr != NETDB_INTERNAL || errno != ERANGE)
+		{
+			delete [] pchBuffer;
+			throw CSocketException("gethostbyname_r fail", __FILE__, __LINE__);
+		}
+		else
+		{
+			/* Enlarge buffer.  */
+			delete [] pchBuffer;
+			tBufLen *= 2;
+			pchBuffer = new char [tBufLen];
+		}
+	}
+
+	m_stInetAddr = *(struct in_addr*)pstHost->h_addr_list[0];
+	delete [] pchBuffer;
+	return *this;
+}
+
+CSocket::CSocket()
+{
+	Init();
+}
+
+CSocket::CSocket(const CSocket* pstSocket)
+{
+	Init();
+	m_iSocket = dup(pstSocket->m_iSocket);
+	if (m_iSocket < 0)
+		throw CSocketException(strerror(errno), __FILE__, __LINE__);
+		
+	m_eState = pstSocket->m_eState;
+	m_iDomain = pstSocket->m_iDomain;
+	m_bBlock = pstSocket->m_bBlock;
+}
+
+CSocket::CSocket(int iDomain, int iType, int iProtocol)
+{
+	Init();
+	m_iDomain = iDomain;	
+	Socket(iDomain, iType, iProtocol);
+	m_eState = S_AVAILABLE;
+}
+
+void CSocket::Init()
+{
+	m_iSocket = -1;
+	m_eState = S_INITIAL;
+	m_bBlock = true;
+}
+void CSocket::End()
+{
+	if (m_iSocket < 0)
+	{
+		m_iSocket = -1;
+		m_eState = S_INITIAL;
+		return;
+	}
+	
+	close(m_iSocket);
+	m_iSocket = -1;
+	m_eState = S_INITIAL;
+}
+
+void CSocket::SetBlock(bool bBolck)
+{
+	int iFlag = fcntl(m_iSocket, F_GETFL);
+	if (iFlag < 0)
+		throw CSocketException(strerror(errno), __FILE__, __LINE__);
+
+	if (bBlock)
+		iFlag &= ~O_NONBLOCK;
+	else
+		iFlag |= O_NONBLOCK;
+		
+	if (fcntl(m_iSocket, F_SETFL, iFlag) < 0)
+		throw CSocketException(strerror(errno), __FILE__, __LINE__);
+		
+	m_bBlock = bBlock;
+}
+
+void CSocket::Bind(const CInetAddress& stInetAddr, tcport_t tPort)
+{
+	struct sockaddr_in stSockAddr;
+	memset(&stSockAddr, 0, sizeof(stSockAddr));
+	stSockAddr.sin_family = AF_INET;
+	stSockAddr.sin_port = htons(tPort);
+	stSockAddr.sin_addr = stInetAddr.GetAddress();
+	if (bind(m_iSocket, (struct sockaddr*)&stSockAddr, sizeof(stSockAddr)) < 0)
+		throw CSocketException(strerror(errno), __FILE__, __LINE__);
+}
+
+

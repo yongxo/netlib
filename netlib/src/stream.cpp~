@@ -1,0 +1,43 @@
+
+
+#include "exception.h"
+#include "stream.h"
+
+
+void CStream::AllocateBuffer()
+{
+	m_pchGetBuf = new char[m_iBufSize];
+	if (!m_pchGetBuf)
+		throw CMemException("out of memory.", __FILE__, __LINE__);
+		
+	m_pchPutBuf = new char[m_iBufSize];
+	if(!m_pchPutBuf)
+	{
+		delete [] m_pchGetBuf, m_pchGetBuf = 0;
+		throw CMemException("out of memory.", __FILE__, __LINE__);
+	}
+
+	clear();
+//	setb(m_pchGetBuf, m_pchGetBuf + m_iBufSize, 0);
+	setg(m_pchGetBuf, m_pchGetBuf + m_iBufSize, m_pchGetBuf + m_iBufSize);
+	setp(m_pchPutBuf, m_pchPutBuf + m_iBufSize);
+}
+
+
+void CStream::FreeBuffer()
+{
+	//flush will be done in the inherited class.
+
+	if (m_pchGetBuf)
+		delete []m_pchGetBuf, m_pchGetBuf = 0;
+		
+	if (m_pchPutBuf)
+		delete []m_pchPutBuf, m_pchPutBuf = 0;
+}
+
+
+int CStream::sync()
+{
+	overflow(EOF);
+	return 0;
+}
